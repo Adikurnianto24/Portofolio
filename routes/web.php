@@ -10,6 +10,9 @@ use App\Http\Controllers\Admin\ServicesController;
 use App\Http\Controllers\Admin\TyperTitleController;
 use App\Http\Controllers\Frontend\HomeController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\Frontend\PortfolioController;
+use App\Http\Controllers\SomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +24,12 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::get('/some-route', [SomeController::class, 'someMethod'])->name('some.route');
+
+Route::get('/portfolio-details/{id}', [PortfolioController::class, 'show'])->name('portfolio.details');
+
+Route::post('/contact-submit', [ContactController::class, 'submit'])->name('contact.submit');
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -61,3 +70,4 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
     /* Portfolio Item Route */
     Route::resource('portfolio-item', PortfolioItemController::class);
 });
+

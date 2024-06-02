@@ -5,11 +5,9 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="section-title">
-                            <h3 class="title">Skills</h3>
+                            <h3 class="title">Kemampuan</h3>
                             <div class="desc">
-                                <p>Earum quos animi numquam excepturi eveniet explicabo repellendus rem esse.
-                                    Quae quasi
-                                    odio enim.</p>
+                                <p>Berikut adalah deskripsi kemampuan yang saya miliki.</p>
                             </div>
                         </div>
                     </div>
@@ -52,7 +50,7 @@
                     </div>
                     <div class="col-sm-6">
                         <div class="bar_group wow fadeInUp" data-wow-delay="0.5s" data-max="100">
-                            <div class="title">Problem Solbing</div>
+                            <div class="title">Problem Solving</div>
                             <div class="bar_group__bar thick elastic" data-value="65" data-tooltip="true"
                                 data-color="#9dd3ff" data-show-values="false" data-unit="%"></div>
                         </div>

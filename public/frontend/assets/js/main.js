@@ -1,6 +1,5 @@
-; (function ($) {
+;(function ($) {
     "use strict";
-
 
     //======menu fix js======
     if ($('.main_menu').offset() != undefined) {
@@ -15,8 +14,6 @@
             }
         });
     }
-
-
 
     $(document).on('ready', function () {
         var mY = 0;
@@ -33,10 +30,13 @@
             // set new mY after doing test above
             mY = e.pageX;
         });
-        $('.single-portfolio').each(function () { $(this).hoverdir(); });
-        /*--Primary-Menu-Dropdown-Plus-Icon--*/
-        $('.primary-menu .sub-menu').parent('li').children('a').append('<i class="plus"></i>');
 
+        // Remove hoverdir for single-portfolio
+        // $('.single-portfolio').each(function () { $(this).hoverdir(); });
+
+        /*--Primary-Menu-Dropdown-Plus-Icon--*/
+        // Hapus atau komentari baris berikut jika tidak diperlukan
+        // $('.primary-menu .sub-menu').parent('li').children('a').append('<i class="plus"></i>');
 
         /*-- Button-Hover-Effect-Script --*/
         $('.mouse-dir').on('mouseenter', function (e) {
@@ -70,82 +70,7 @@
             }, 1500);
         });
 
-        $('.blog-slider').slick({
-            dots: false,
-            arrows: false,
-            prevArrow: '<button class="slick-prev"  type="button"><i class="fa fa-angle-left"></i></button>',
-            nextArrow: '<button class="slick-next" type="button"><i class="fa fa-angle-right"></i></button>',
-            infinite: true,
-            centerMode: false,
-            autoplay: true,
-            vertical: false,
-            verticalSwiping: false,
-            speed: 1000,
-            slidesToShow: 3,
-            slidesToScroll: 1,
-            responsive: [
-                {
-                    breakpoint: 1170,
-                    settings: {
-                        slidesToShow: 2,
-                        slidesToScroll: 1,
-                    }
-                },
-                {
-                    breakpoint: 992,
-                    settings: {
-                        slidesToShow: 2,
-                        slidesToScroll: 1
-                    }
-                },
-                {
-                    breakpoint: 768,
-                    settings: {
-                        slidesToShow: 1,
-                        slidesToScroll: 1
-                    }
-                }
-            ]
-        });
-
-        /*-- Testimonail-Slider-Active --*/
-        $('.testimonial-slider').slick({
-            dots: true,
-            arrows: false,
-            infinite: true,
-            centerMode: false,
-            autoplay: true,
-            vertical: false,
-            verticalSwiping: false,
-            speed: 1000,
-            slidesToShow: 2,
-            slidesToScroll: 1,
-            responsive: [
-                {
-                    breakpoint: 1170,
-                    settings: {
-                        slidesToShow: 2,
-                        slidesToScroll: 1,
-                    }
-                },
-                {
-                    breakpoint: 992,
-                    settings: {
-                        slidesToShow: 1,
-                        slidesToScroll: 1
-                    }
-                },
-                {
-                    breakpoint: 768,
-                    settings: {
-                        slidesToShow: 1,
-                        slidesToScroll: 1
-                    }
-                }
-            ]
-        });
-
-        // Portfolio Image Loded with Masonry
+        // Portfolio Image Loaded with Masonry
         var PortfolioMasonry = $('.portfolios');
         if (typeof imagesLoaded == 'function') {
             imagesLoaded(PortfolioMasonry, function () {
@@ -157,9 +82,8 @@
                         filter: '*'
                     });
                 }, 500);
-
             });
-        };
+        }
 
         // Set Active Class for Portfolio filter
         $('.filter-menu li').on('click', function (event) {
@@ -168,12 +92,32 @@
             event.preventDefault();
         });
 
-        // Filter JS for Porrtfolio
+        // Filter JS for Portfolio
         $('.filter-menu').on('click', 'li', function () {
             var filterValue = $(this).attr('data-filter');
             PortfolioMasonry.isotope({
                 filter: filterValue
             });
+
+            // Hide all items
+            $('.portfolios .filter-item').removeClass('animated').hide();
+
+            // Show filtered items with animation
+            if (filterValue === '*') {
+                $('.portfolios .filter-item').each(function(index) {
+                    $(this).delay(index * 200).queue(function(next) {
+                        $(this).addClass('animated').show();
+                        next();
+                    });
+                });
+            } else {
+                $(filterValue).each(function(index) {
+                    $(this).delay(index * 200).queue(function(next) {
+                        $(this).addClass('animated').show();
+                        next();
+                    });
+                });
+            }
         });
 
         /*-- Mobile-Menu-Active --*/
@@ -187,8 +131,6 @@
             menuButton: '.navi-trigger',
             closeOnClick: 'true' // Close menu when a link is clicked.
         });
-
-
 
         /*-- Click-Smoth-Scroll-Script --*/
         $('.mainmenu-area a[href*="#"]')
@@ -222,9 +164,6 @@
                 }
             });
 
-
-
-
         $(window).on("load", function () {
             /*-- Preloader-Fade-Out-After-Load-Window --*/
             $('.preloader').fadeOut(500);
@@ -235,11 +174,13 @@
                 }, 500);
                 return false;
             });
+
             /*-- WoW-Animation-JS --*/
             new WOW().init({
                 mobile: false,
             });
         });
+
         $('.navi-trigger').on('click', function () {
             $(this).toggleClass('active');
         });
@@ -294,7 +235,6 @@
                 }
             }
         };
-
         var swiper = new Swiper(".swiper-container", swiperOptions);
 
         // DATA BACKGROUND IMAGE
@@ -306,8 +246,8 @@
         });
 
         /*-- Perticle-JS --*/
-        if (null != document.getElementById("particles-js")) {
-            particlesJS('particles-js', {
+        if (typeof particlesJS !== 'undefined') {
+            particlesJS("particles-js", {
                 "particles": {
                     "number": {
                         "value": 80,
@@ -417,26 +357,36 @@
                 },
                 "retina_detect": true
             });
-
         }
-    });
 
+        /*-- Scroll-To-Top --*/
+        $(window).scroll(function () {
+            if ($(this).scrollTop() >= 100) {        // If page is scrolled more than 50px
+                $('#scrollUp').addClass('active');    // Fade in the arrow
+            } else {
+                $('#scrollUp').removeClass('active');   // Else fade out the arrow
+            }
+        });
 
-    /*-- Scroll-To-Top --*/
-    $(window).scroll(function () {
-        if ($(this).scrollTop() >= 100) {        // If page is scrolled more than 50px
-            $('#scrollUp').addClass('active');    // Fade in the arrow
-        } else {
-            $('#scrollUp').removeClass('active');   // Else fade out the arrow
-        }
-    });
+        var $el = $('.parallax-bg');
+        $(window).on('scroll', function () {
+            var scroll = $(document).scrollTop();
+            $el.css({
+                'background-position': '50% ' + (+.4 * scroll) + 'px'
+            });
+        });
 
-    var $el = $('.parallax-bg');
-    $(window).on('scroll', function () {
-        var scroll = $(document).scrollTop();
-        $el.css({
-            'background-position': '50% ' + (+.4 * scroll) + 'px'
+        // Inisialisasi Slick Slider untuk Testimonial
+        $(document).ready(function(){
+            $('.testimonial-slider').slick({
+                dots: true,
+                infinite: true,
+                speed: 300,
+                slidesToShow: 1,
+                adaptiveHeight: true
+            });
         });
     });
-
 })(jQuery);
+                
+                

@@ -293,7 +293,7 @@ Button-Styles
 .header-area {
     padding-top: 320px;
     padding-bottom: 210px;
-    background: url('../images/home-slider-2.jpg') no-repeat scroll top center/cover;
+    background: url('../images/background.png') no-repeat scroll top center/cover;
     position: relative;
     z-index: 1;
     overflow: hidden;
@@ -432,7 +432,8 @@ Button-Styles
 ---------------------- */
 .filter-menu {
     list-style: none;
-    margin: -15px 0 30px 0;
+    margin-bottom: 20px;
+    margin: 0;
     padding: 0;
     text-align: center;
     width: 100%;
@@ -447,12 +448,9 @@ Button-Styles
     font-weight: 700;
     padding: 10px 30px;
     cursor: pointer;
-    -webkit-transition: 0.3s;
-    -o-transition: 0.3s;
     transition: 0.3s;
     border-radius: 30px;
-    -moz-transition: 0.3s;
-    -ms-transition: 0.3s;
+    margin: 0 5px; /* Add margin between items */
 }
 
 .filter-menu li:hover,
@@ -461,8 +459,23 @@ Button-Styles
     color: #fff;
 }
 
-.portfolio-wrapper {
-    margin-bottom: -30px;
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.single-portfolio.animated {
+    opacity: 1;
+}
+
+.portfolios .single-portfolio {
+    margin-top: 20px; /* Tambahkan jarak di atas elemen portofolio */
 }
 
 .single-portfolio {
@@ -471,6 +484,9 @@ Button-Styles
     z-index: 1;
     margin-bottom: 30px;
     border-radius: 10px;
+    background-color: #ffffff; /* Ubah latar belakang menjadi putih */
+    opacity: 0;
+    animation: slideInLeft 0.5s forwards;
 }
 
 .single-portfolio img {
@@ -479,73 +495,32 @@ Button-Styles
 
 .single-portfolio .portfolio-content {
     position: absolute;
-    left: 100%;
-    top: 100%;
-    width: 100%;
-    height: 100%;
-    z-index: 2;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    text-align: center;
-    padding: 35px;
-}
-
-blockquote {
-    border-left: 10px solid #ff885e;
-    background-color: #f3f7ff;
-    border-radius: 10px;
-}
-
-.single-portfolio .portfolio-content:before {
-    content: "";
-    position: absolute;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: #ff885e;
-    opacity: 0.7;
-    z-index: -1;
-}
-
-.double .single-portfolio .portfolio-content {
-    padding: 80px;
-}
-
-.single-portfolio .portfolio-content .icon {
-    width: 40px;
-    height: 40px;
-    line-height: 40px;
-    color: #ffffff;
-    font-size: 36px;
-    margin-bottom: 20px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.5); /* Tambahkan latar belakang semi-transparan */
 }
 
 .single-portfolio .portfolio-content .title {
-    font-size: 24px;
-    color: #ffffff;
+    font-size: 20px;
+    color: #ffffff; /* Ubah warna teks menjadi putih */
     font-weight: 600;
+    text-align: center;
+    margin: 0%;
 }
 
 .single-portfolio .portfolio-content .title a {
-    color: #ffffff;
+    color: #ffffff; /* Ubah warna teks menjadi putih */
 }
 
 .single-portfolio .portfolio-content .desc {
-    font-size: 16px;
-    color: #fffefe;
-    font-weight: 600;
+    display: none; /* Sembunyikan elemen deskripsi */
 }
 
 /* ----------------------
@@ -726,7 +701,7 @@ blockquote {
 
 .icon-info h6 {
     margin-bottom: 0px;
-    font-size: 16px;
+    font-size: 13px;
 }
 
 .icon-info h6 a {
@@ -742,9 +717,9 @@ blockquote {
 09. Testimonial-Area
 ----------------------- */
 .testimonial-slider {
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    overflow: hidden;
+    max-width: 1200px; /* Sesuaikan lebar maksimal sesuai kebutuhan Anda */
+    margin: 0 auto; /* Pusatkan slider */
+    padding: 20px; /* Tambahkan padding untuk memberikan ruang */
 }
 
 .testimonial-slider .slick-list {
@@ -760,6 +735,7 @@ blockquote {
     position: relative;
     z-index: 1;
     border-radius: 10px;
+    height: 100%;
 }
 
 .testimonial-slider .single-testimonial .quote {
@@ -778,20 +754,69 @@ blockquote {
     margin-bottom: 40px;
 }
 
-.testimonial-slider .single-testimonial .content p:before,
-.testimonial-slider .single-testimonial .content p:after {
+/* Tambahkan ini ke file CSS Anda */
+/* Tambahkan ini ke file CSS Anda */
+/* Tambahkan ini ke file CSS Anda */
+.single-testimonial .content p {
+    position: relative;
+    padding-left: 0; /* Hilangkan padding kiri */
+    padding-right: 0; /* Hilangkan padding kanan */
+    margin-left: 20px; /* Tambahkan margin kiri untuk teks */
+    margin-right: 20px; /* Tambahkan margin kanan untuk teks */
+    display: inline-block; /* Pastikan elemen p inline-block */
+}
+
+.single-testimonial .content p:before,
+.single-testimonial .content p:after {
     content: '"';
-    display: inline-block;
+    font-size: 24px; /* Sesuaikan ukuran font sesuai kebutuhan Anda */
+    color: #ff885e; /* Sesuaikan warna sesuai kebutuhan Anda */
+    display: inline; /* Pastikan elemen pseudo inline */
+}
+
+.single-testimonial .content p:before {
+    margin-right: 5px; /* Sesuaikan jarak sesuai kebutuhan Anda */
+}
+
+.single-testimonial .content p:after {
+    margin-left: 5px; /* Sesuaikan jarak sesuai kebutuhan Anda */
 }
 
 .testimonial-slider .single-testimonial .title {
     font-size: 22px;
     margin-bottom: 10px;
+    margin-top: 10px;
 }
 
 .testimonial-slider .single-testimonial .position {
     font-size: 14px;
     font-weight: 400;
+}
+
+/* Tambahkan CSS untuk judul dan deskripsi umpan balik */
+.testimonial-title {
+    font-size: 36px;
+    margin-bottom: 15px;
+    text-align: center;
+    color: #190844;
+}
+
+.testimonial-desc {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 30px;
+    text-align: center;
+    color: #282828;
+    max-width: 800px; /* Set a max-width to control the width of the description */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.single-testimonial {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 300px; /* Sesuaikan tinggi minimum sesuai kebutuhan Anda */
 }
 
 /* ---------------------------
@@ -888,148 +913,6 @@ blockquote {
 .contact-form :-moz-placeholder {
     /* Firefox 18- */
     color: #282828;
-}
-
-/* ----------------------
-11. Blog-Area
------------------------- */
-.blog-slider .slick-list {
-    margin-left: -15px;
-    margin-right: -15px;
-}
-
-.blog-slider .single-blog {
-    margin-right: 15px;
-    margin-left: 15px;
-    margin-top: 10px;
-    background: #f3f7ff;
-    border-radius: 10px;
-}
-
-.single-blog {
-    background: #f3f7ff;
-    margin: 25px 0px 0px 0px;
-}
-
-.single-blog .title {
-    font-size: 25px;
-    line-height: 38px;
-    font-weight: 600;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
-
-.single-blog .title a {
-    color: #190844;
-    padding: 10px 0px;
-}
-
-.single-blog .title a:hover {
-    color: #ff885e;
-}
-
-.single-blog .blog-image {
-    margin-bottom: 26px;
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-.single-blog .desc {
-    margin-bottom: 30px;
-}
-
-.single-blog .button-primary-trans i {
-    margin-left: 5px;
-}
-
-.blog-lists {
-    margin-bottom: -40px;
-}
-
-.blog-lists .single-blog {
-    margin-bottom: 50px;
-}
-
-.full-width .single-blog .blog-content {
-    width: calc(100% - 100px);
-    margin: auto;
-}
-
-.blog-meta {
-    display: flex;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    margin-bottom: 50px;
-    border-top: 1px solid #eee;
-    border-bottom: 1px solid #eee;
-    background-color: #fff0eb;
-    padding: 25px 40px 5px 40px;
-    border-radius: 10px;
-}
-
-.blog-meta .single-meta {
-    margin-right: 50px;
-    margin-bottom: 10px;
-}
-
-.blog-meta .single-meta:last-child {
-    margin-right: 0px;
-}
-
-.blog-meta .single-meta .meta-title {
-    margin-bottom: 5px;
-    font-size: 15px;
-    letter-spacing: 2px;
-}
-
-.blog-meta .single-meta .meta-value {
-    font-size: 16px;
-    color: #282828;
-}
-
-.blog-meta .single-meta .meta-value a {
-    color: #282828;
-}
-
-/* .blog-meta .single-meta .meta-value:before {
-    content: ".";
-    color: #ff885e;
-    margin-right: 5px;
-} */
-
-/*------------------------
-6. Navigation-&-Pagination
--------------------------*/
-.navigation,
-.pagination {
-    width: 100%;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    text-align: center;
-    margin-top: 80px;
-}
-
-.nav-links {
-    width: 100%;
-}
-
-.pagination .page-numbers {
-    background: #558bff;
-    display: inline-block;
-    width: 50px;
-    height: 50px;
-    margin: 5px;
-    line-height: 50px;
-    position: relative;
-    z-index: 1;
-    color: #141414;
-}
-
-.pagination .page-numbers:hover,
-.pagination .page-numbers.current {
-    color: #ffffff;
 }
 
 .pagination .page-numbers:after {
@@ -1516,4 +1399,23 @@ Footer-Area
 
 .footer-widgets .text-box ul li a:hover {
     background: #ff895e
+}
+
+.header-text .typer-title {
+    color: #ff885e; 
+}
+
+.header-text .desc p {
+    color: #F6DCAC;
+}
+
+/* Misalnya di public/css/main.css */
+#typed-text {
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.typed-fade-out {
+    opacity: 0;
+    transition: opacity 0.25s ease-out;
 }
